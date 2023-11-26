@@ -2,13 +2,17 @@ import { defineStore } from 'pinia'
 import { login, getUserInfo } from '../../api/sys'
 import { setItem, removeItem } from '../../utils/storage'
 import router from '../../router/index'
+// 导入scss常量
+import variables from '../../styles/variables.module.scss'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
     userProfile: {},
     count: 0
   }),
-  getters: {},
+  getters: {
+    cssVar: (state) => variables
+  },
   actions: {
     increment() {
       this.count++

@@ -35,7 +35,6 @@ const userStore = useUserStore()
 // 退出登录
 const logOut = () => {
   userStore.logOut()
-  // console.log(userStore)
 }
 </script>
 <style lang="scss" scoped>

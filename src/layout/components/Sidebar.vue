@@ -4,10 +4,11 @@
       <h2 class="title">后台管理系统</h2>
       <!-- 整个menu菜单 -->
       <el-menu
+        :default-active="activeMenu"
         :unique-opened="true"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
+        :background-color="cssObject.menuBg"
+        :text-color="cssObject.menuText"
+        :active-text-color="cssObject.menuActiveText"
         :router="true"
       >
         <!-- 子集menu菜单 -->
@@ -39,9 +40,23 @@
   </div>
 </template>
 <script setup>
+import { ref } from 'vue'
+import { useUserStore } from '../../store/modules/user'
+import { computed } from '@vue/reactivity'
+import { useRoute } from 'vue-router'
 // 使用本地routes模拟后端返回的路由
 const routeJson = require('./routes.json')
 console.log(routeJson)
+
+const userStore = useUserStore()
+const cssObject = ref(userStore.cssVar)
+
+// 默认激活项
+const route = useRoute()
+console.log(route)
+const activeMenu = computed(() => {
+  return route.path
+})
 </script>
 <style scoped>
 .title {

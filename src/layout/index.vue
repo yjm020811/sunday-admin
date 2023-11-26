@@ -21,7 +21,7 @@ const userStore = useUserStore()
 userStore.getUserInfo()
 </script>
 <style lang="scss" scoped>
-@import '../styles/variables.scss';
+@import '../styles/variables.module.scss';
 @import '../styles/mixin.scss';
 
 .app-wrapper {
