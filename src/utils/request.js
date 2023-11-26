@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import router from '../router/index'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
@@ -28,9 +29,10 @@ service.interceptors.response.use(
     // 判断请求是否成功
     if (code === 200) {
       return response.data
-    } else {
+    } else if (code === 401) {
       // 失败,消息提示
-      ElMessage.error(msg)
+      ElMessage.error('身份认证失败')
+      router.push('/login')
       return Promise.reject(new Error(msg))
     }
   },

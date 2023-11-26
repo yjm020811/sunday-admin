@@ -18,7 +18,6 @@ import Sidebar from './components/Sidebar'
 // 获取用户信息
 import { useUserStore } from '@/store/modules/user'
 const userStore = useUserStore()
-console.log(userStore)
 userStore.getUserInfo()
 </script>
 <style lang="scss" scoped>
