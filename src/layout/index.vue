@@ -1,6 +1,6 @@
 <template>
   <div class="app-wrapper">
-    <Sidebar class="sidebar-container"></Sidebar>
+    <Sidebar class="sidebar-container" ></Sidebar>
     <div class="main-container">
       <div class="fixed-header">
         <Navbar />
@@ -31,6 +31,7 @@ userStore.getUserInfo()
   width: 100%;
   .sidebar-container {
     background-color: $menuBg;
+    width: 80px;
   }
 }
 

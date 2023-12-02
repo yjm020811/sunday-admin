@@ -1,5 +1,8 @@
 <template>
   <div class="navbar">
+    <el-icon size="28" class="menu-icon" @click="toggleSideBar"
+      ><Menu
+    /></el-icon>
     <div class="right-menu">
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
@@ -9,7 +12,7 @@
             :size="40"
             :src="userStore.userProfile?.data?.avatar"
           ></el-avatar>
-          <el-icon><Setting /></el-icon>
+          <el-icon class="icon"><Setting /></el-icon>
         </div>
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
@@ -30,12 +33,18 @@
 </template>
 <script setup>
 import { useUserStore } from '@/store/modules/user'
-const userStore = useUserStore()
+import { useCommonStore } from '@/store/modules/common'
 
 // 退出登录
+const userStore = useUserStore()
 const logOut = () => {
   userStore.logOut()
-  // console.log(userStore)
+}
+
+// 切换sideBar
+const commonStore = useCommonStore()
+const toggleSideBar = () => {
+  commonStore.changeSidebarOpen()
 }
 </script>
 <style lang="scss" scoped>
@@ -45,21 +54,26 @@ const logOut = () => {
   position: relative;
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-}
-.right-menu {
   display: flex;
   align-items: center;
-  float: right;
-  padding-right: 16px;
-
+  justify-content: space-between;
+  .menu-icon {
+    margin-left: 4px;
+    cursor: pointer;
+  }
+}
+.right-menu {
   :deep(.avatar-container) {
     cursor: pointer;
     .avatar-wrapper {
       margin-top: 5px;
       position: relative;
+      .icon {
+        margin-right: 4px;
+      }
       .el-avatar {
         --el-avatar-background-color: none;
-        margin-right: 12px;
+        margin-right: 4px;
       }
     }
   }

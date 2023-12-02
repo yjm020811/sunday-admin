@@ -9,6 +9,7 @@
         text-color="#fff"
         active-text-color="#ffd04b"
         :router="true"
+        :collapse="commonStore.sidebarOpen"
       >
         <!-- 子集menu菜单 -->
         <el-sub-menu
@@ -39,6 +40,9 @@
   </div>
 </template>
 <script setup>
+import { useCommonStore } from '@/store/modules/common'
+const commonStore = useCommonStore()
+
 // 使用本地routes模拟后端返回的路由
 const routeJson = require('./routes.json')
 console.log(routeJson)
