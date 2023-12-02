@@ -37,6 +37,7 @@
 import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useUserStore } from '../../store/modules/user'
+import { ElMessage } from 'element-plus'
 
 // 数据源
 const loginForm = ref({
@@ -73,6 +74,7 @@ const submitForm = () => {
     // 触发登录
     loading.value = true
     await userStore.loginAction(loginForm.value)
+    ElMessage.success('登录成功!')
     loading.value = false
   })
 }

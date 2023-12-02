@@ -1,13 +1,14 @@
 <template>
-  <div class="app-wrapper">
-    <Sidebar class="sidebar-container" ></Sidebar>
-    <div class="main-container">
-      <div class="fixed-header">
-        <Navbar />
-      </div>
-      <AppMain />
-    </div>
-  </div>
+  <el-container>
+        <Sidebar></Sidebar>
+        <!-- 设置子元素的排列方向 -->
+        <el-container direction="vertical">
+            <Navbar></Navbar>
+            <el-main>
+              <AppMain></AppMain>
+            </el-main>
+        </el-container>
+    </el-container>
 </template>
 
 <script setup>
@@ -17,11 +18,13 @@ import Sidebar from './components/Sidebar'
 
 // 获取用户信息
 import { useUserStore } from '@/store/modules/user'
+// import { useCommonStore } from '@/store/modules/common'
 const userStore = useUserStore()
 userStore.getUserInfo()
+// const commonStore = useCommonStore()
 </script>
 <style lang="scss" scoped>
-@import '../styles/variables.scss';
+@import '../styles/variables.module.scss';
 @import '../styles/mixin.scss';
 
 .app-wrapper {
@@ -31,7 +34,7 @@ userStore.getUserInfo()
   width: 100%;
   .sidebar-container {
     background-color: $menuBg;
-    width: 80px;
+    height: 100vh;
   }
 }
 
@@ -40,6 +43,9 @@ userStore.getUserInfo()
   top: 0;
   right: 0;
   z-index: 9;
+  // width: 100%;
   width: calc(100% - #{$sideBarWidth});
+  transition: width 0.28s;
 }
+
 </style>

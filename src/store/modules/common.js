@@ -2,7 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useCommonStore = defineStore('common', {
   state: () => ({
-    sidebarOpen: true
+    //  侧边栏是否是打开状态
+    sidebarOpen: false
   }),
   getters: {},
   actions: {

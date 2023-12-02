@@ -1,8 +1,12 @@
 <template>
   <div class="navbar">
-    <el-icon size="28" class="menu-icon" @click="toggleSideBar"
-      ><Menu
-    /></el-icon>
+    <div class="left-menu">
+      <span class="foldIcon" @click="changeSidebarOpen">
+        <el-icon size="28" v-if="commonStore.sidebarOpen"><Expand /></el-icon>
+        <el-icon size="28" v-else><Fold /></el-icon>
+      </span>
+      <Breadcrumb />
+    </div>
     <div class="right-menu">
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
@@ -33,6 +37,7 @@
 </template>
 <script setup>
 import { useUserStore } from '@/store/modules/user'
+import Breadcrumb from '@/components/Breadcrumb.vue'
 import { useCommonStore } from '@/store/modules/common'
 
 // 退出登录
@@ -40,11 +45,10 @@ const userStore = useUserStore()
 const logOut = () => {
   userStore.logOut()
 }
-
-// 切换sideBar
+// sideBar收缩
 const commonStore = useCommonStore()
-const toggleSideBar = () => {
-  commonStore.changeSidebarOpen()
+const changeSidebarOpen = () => {
+  commonStore.sidebarOpen = !commonStore.sidebarOpen
 }
 </script>
 <style lang="scss" scoped>
@@ -54,8 +58,8 @@ const toggleSideBar = () => {
   position: relative;
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-between;
   .menu-icon {
     margin-left: 4px;
@@ -63,6 +67,7 @@ const toggleSideBar = () => {
   }
 }
 .right-menu {
+  float: right;
   :deep(.avatar-container) {
     cursor: pointer;
     .avatar-wrapper {
@@ -76,6 +81,14 @@ const toggleSideBar = () => {
         margin-right: 4px;
       }
     }
+  }
+}
+.left-menu {
+  .foldIcon {
+    position: relative;
+    bottom: 10px;
+    cursor: pointer;
+    margin-left: 4px;
   }
 }
 </style>

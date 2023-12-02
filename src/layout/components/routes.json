@@ -5,7 +5,18 @@
     "meta": {
       "title": "个人中心",
       "icon": "User"
-    }
+    },
+    "children": [
+      {
+        "path": "/profile",
+        "name": "userManage",
+        "meta": {
+          "title": "个人管理",
+          "icon": "Management"
+        },
+        "children": []
+      }
+    ]
   },
   {
     "path": "/user",
@@ -20,7 +31,7 @@
     "children": [
       {
         "path": "/user/manage",
-        "name": "userManage1",
+        "name": "userManage",
         "meta": {
           "title": "用户管理",
           "icon": "Management"

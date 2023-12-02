@@ -9,7 +9,7 @@ const privateRoutes = [
     component: layout,
     redirect: '/user/manage',
     meta: {
-      title: 'user',
+      title: '用户中心',
       icon: 'personnel'
     },
     children: [
@@ -18,10 +18,8 @@ const privateRoutes = [
         name: 'userManage',
         component: () => import('../views/user-manage/index.vue'),
         meta: {
-          title: {
-            title: 'userManage',
-            icon: 'personnel-manage'
-          }
+          title: '用户管理',
+          icon: 'personnel-manage'
         }
       },
       {
@@ -29,10 +27,8 @@ const privateRoutes = [
         name: 'userRole',
         component: () => import('../views/role-list/index.vue'),
         meta: {
-          title: {
-            title: 'roleList',
-            icon: 'role'
-          }
+          title: '角色管理',
+          icon: 'role'
         }
       },
       {
@@ -40,10 +36,8 @@ const privateRoutes = [
         name: 'userPermission',
         component: () => import('../views/permission-list/index.vue'),
         meta: {
-          title: {
-            title: 'permissionList',
-            icon: 'permission'
-          }
+          title: '权限管理',
+          icon: 'permission'
         }
       },
       {
@@ -51,9 +45,7 @@ const privateRoutes = [
         name: 'userInfo',
         component: () => import('../views/user-info/index.vue'),
         meta: {
-          title: {
-            title: 'userInfo'
-          }
+          title: 'userInfo'
         }
       },
       {
@@ -73,7 +65,7 @@ const privateRoutes = [
     component: layout,
     redirect: '/article/ranking',
     meta: {
-      title: 'article',
+      title: '文章',
       icon: 'article'
     },
     children: [
@@ -82,7 +74,7 @@ const privateRoutes = [
         name: 'articleRanking',
         component: () => import('@/views/article-ranking/index'),
         meta: {
-          title: 'articleRanking',
+          title: '文章排名',
           icon: 'article-ranking'
         }
       },
@@ -91,7 +83,7 @@ const privateRoutes = [
         name: 'articleDetail',
         component: () => import('@/views/article-detail/index'),
         meta: {
-          title: 'articleDetail'
+          title: '文章详情'
         }
       },
       {
@@ -99,7 +91,7 @@ const privateRoutes = [
         name: 'articleCreate',
         component: () => import('@/views/article-create/index'),
         meta: {
-          title: 'articleCreate',
+          title: '创建文章',
           icon: 'article-create'
         }
       },
@@ -132,11 +124,20 @@ const publicRoutes = [
         name: 'profile',
         component: () => import('../views/profile/index.vue'),
         meta: {
-          title: {
-            title: 'profile',
-            icon: 'el-icon-user'
+          title: '个人中心',
+          icon: 'el-icon-user'
+        },
+        children: [
+          {
+            path: '/user/manage',
+            name: 'userManage',
+            component: () => import('../views/user-manage/index.vue'),
+            meta: {
+              title: '个人管理',
+              icon: 'personnel-manage'
+            }
           }
-        }
+        ]
       },
       // 404
       {
