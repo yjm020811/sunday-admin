@@ -31,7 +31,10 @@
               <component :is="item.meta.icon" />
             </el-icon>
 
-            <span v-if="!commonStore.sidebarOpen">{{ item.meta.title }}</span>
+            <span v-if="!commonStore.sidebarOpen">
+              <!-- {{ $t('navBar') }} -->
+              {{ item.meta.title }}
+            </span>
           </template>
           <el-menu-item
             v-for="item1 in item.children"
@@ -56,7 +59,6 @@ import { computed } from '@vue/reactivity'
 import { useRoute } from 'vue-router'
 // 使用本地routes模拟后端返回的路由
 const routeJson = require('./routes.json')
-console.log(routeJson)
 
 const userStore = useUserStore()
 const cssObject = ref(userStore.cssVar)

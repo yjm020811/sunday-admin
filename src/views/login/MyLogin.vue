@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <el-form :model="loginForm" ref="loginFormRef" :rules="loginRules">
-      <h2>用户登录界面</h2>
+      <h2>{{ $t('login.title') }}</h2>
+
+      <LangSelect class="language"></LangSelect>
+
       <el-form-item label="用户名" label-width="80px" prop="username">
         <el-input
           type="text"
@@ -28,7 +31,9 @@
         </el-input>
       </el-form-item>
 
-      <el-button @click.prevent="submitForm" :loading="loading">登录</el-button>
+      <el-button @click.prevent="submitForm" :loading="loading">
+        {{ $t('login.loginBtn') }}
+      </el-button>
     </el-form>
   </div>
 </template>
@@ -37,7 +42,8 @@
 import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useUserStore } from '../../store/modules/user'
-import { ElMessage } from 'element-plus'
+import LangSelect from '@/components/LangSelect.vue'
+import { useI18n } from 'vue-i18n'
 
 // 数据源
 const loginForm = ref({
@@ -46,12 +52,13 @@ const loginForm = ref({
 })
 
 // 验证规则
+const i18n = useI18n()
 const loginRules = ref({
   username: [
     {
       required: true,
       trigger: 'blur',
-      message: '用户名为必填项'
+      message: i18n.t('login.usernameRule')
     }
   ],
   password: [
@@ -74,7 +81,6 @@ const submitForm = () => {
     // 触发登录
     loading.value = true
     await userStore.loginAction(loginForm.value)
-    ElMessage.success('登录成功!')
     loading.value = false
   })
 }
@@ -111,5 +117,14 @@ const submitForm = () => {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+}
+
+.language {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  bottom: 35px;
+  font-size: 24px;
+  cursor: pointer;
 }
 </style>

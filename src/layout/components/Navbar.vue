@@ -8,6 +8,37 @@
       <Breadcrumb />
     </div>
     <div class="right-menu">
+      <ScreenFull
+        style="
+          font-size: 24px;
+          position: relative;
+          top: 10px;
+          right: 20px;
+          cursor: pointer;
+        "
+      />
+      <ThemeSelect
+        style="
+          font-size: 24px;
+          position: relative;
+          top: 10px;
+          right: 20px;
+          cursor: pointer;
+          margin-left: 15px;
+        "
+      />
+      <headerSearch
+        style="
+          font-size: 24px;
+          position: relative;
+          top: 4px;
+          right: 20px;
+          cursor: pointer;
+          margin-left: 15px;
+        "
+      />
+      <LangSelect class="select" />
+
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -21,13 +52,13 @@
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
             <router-link to="/" style="display: flex; justify-content: center">
-              <el-dropdown-item> 主页 </el-dropdown-item>
+              <el-dropdown-item> {{ $t('navBar.home') }} </el-dropdown-item>
             </router-link>
             <a target="__blank" href="#">
-              <el-dropdown-item> 课程主页 </el-dropdown-item>
+              <el-dropdown-item> {{ $t('navBar.course') }} </el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logOut">
-              退出登录
+              {{ $t('navBar.logout') }}
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -38,6 +69,10 @@
 <script setup>
 import { useUserStore } from '@/store/modules/user'
 import Breadcrumb from '@/components/Breadcrumb.vue'
+import LangSelect from '@/components/LangSelect.vue'
+import ThemeSelect from '@/components/ThemeSelect.vue'
+import ScreenFull from '@/components/ScreenFull.vue'
+import headerSearch from '@/components/headerSearch.vue'
 import { useCommonStore } from '@/store/modules/common'
 
 // 退出登录
@@ -67,7 +102,7 @@ const changeSidebarOpen = () => {
   }
 }
 .right-menu {
-  float: right;
+  display: flex;
   :deep(.avatar-container) {
     cursor: pointer;
     .avatar-wrapper {
@@ -81,6 +116,24 @@ const changeSidebarOpen = () => {
         margin-right: 4px;
       }
     }
+  }
+  .select {
+    display: inline-block;
+    font-size: 24px;
+    color: #5a5e66;
+    position: relative;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  .theme {
+    display: inline-block;
+    font-size: 24px;
+    color: #5a5e66;
+    position: relative;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
   }
 }
 .left-menu {

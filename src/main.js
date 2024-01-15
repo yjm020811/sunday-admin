@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import './styles/index.scss'
+import i18n from './i18n/index'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 // 导入svgIcon
@@ -24,4 +25,4 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 installIcons(app)
 
-app.use(router).use(ElementPlus).use(pinia).mount('#app')
+app.use(router).use(ElementPlus).use(i18n).use(pinia).mount('#app')

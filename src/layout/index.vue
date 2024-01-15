@@ -1,24 +1,25 @@
 <template>
   <el-container>
-        <Sidebar></Sidebar>
-        <!-- 设置子元素的排列方向 -->
-        <el-container direction="vertical">
-            <Navbar></Navbar>
-            <el-main>
-              <AppMain></AppMain>
-            </el-main>
-        </el-container>
+    <Sidebar></Sidebar>
+    <!-- 设置子元素的排列方向 -->
+    <el-container direction="vertical">
+      <Navbar></Navbar>
+      <!-- <tagsView /> -->
+      <el-main>
+        <AppMain></AppMain>
+      </el-main>
     </el-container>
+  </el-container>
 </template>
 
 <script setup>
 import AppMain from './components/AppMain'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
+// import tagsView from '@/components/tagsView.vue'
 
 // 获取用户信息
 import { useUserStore } from '@/store/modules/user'
-// import { useCommonStore } from '@/store/modules/common'
 const userStore = useUserStore()
 userStore.getUserInfo()
 // const commonStore = useCommonStore()
@@ -47,5 +48,4 @@ userStore.getUserInfo()
   width: calc(100% - #{$sideBarWidth});
   transition: width 0.28s;
 }
-
 </style>

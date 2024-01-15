@@ -33,7 +33,6 @@ export const useUserStore = defineStore('user', {
     // 获取用户信息
     getUserInfo() {
       getUserInfo().then((res) => {
-        console.log(res)
         this.userProfile = res
       })
     },
